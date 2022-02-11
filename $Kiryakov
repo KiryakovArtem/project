@@ -1,0 +1,14 @@
+- hosts: eos
+  connection: network_cli
+  tasks:
+    - name: execute Arista eos command
+      eos_command:
+        commands:
+          - show version
+          - show ip int br
+          - show int status
+      register: output
+
+    - name: print out command
+      debug:
+        var: output.stdout_lines 
